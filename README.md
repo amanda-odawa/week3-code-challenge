@@ -28,11 +28,11 @@ This project is a simple web application that allows users to view movies and pu
 ### Installation
 1. Fork and Clone the repository:
     ```bash
-    git clone https://github.com/amanda-odawa/week2-code-challenge.git
+    git clone https://github.com/amanda-odawa/week3-code-challenge.git
     ```
 2. Navigate to the project directory:
     ```bash
-    cd week2-code-challenge
+    cd week3-code-challenge
     ```
 3. Ensure the API server is running at http://localhost:3000/films.
 4. Open index.html in your web browser.
