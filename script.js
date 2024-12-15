@@ -68,11 +68,11 @@ function buyTicket(movie) {
         document.getElementById('tickets').textContent = movie.capacity - movie.tickets_sold;
     
     //Simulate persistence as irl solution (not required)
-    fetch(`${baseURL}/${movie.id}`, {
-        method: 'PATCH',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({tickets_sold: movie.tickets_sold})
-    }).catch(error => console.error('Error updating tickets:', error));
+    // fetch(`${baseURL}/${movie.id}`, {
+    //     method: 'PATCH',
+    //     headers: {'Content-Type': 'application/json'},
+    //     body: JSON.stringify({tickets_sold: movie.tickets_sold})
+    // });
     }
 
     else {
