@@ -23,7 +23,7 @@ This project is a simple web application that allows users to view movies and pu
 - **Interactive UI**: Uses DOM manipulation to dynamically update the movie details and availability.
 
 ### Demo
-[View Live Demo](https://amanda-odawa.github.io/week3-code-challenge/)
+[View Live Demo](https://amanda-odawa.github.io/week3-code-challenge/index.html/)
 
 ### Installation
 1. Fork and Clone the repository:
