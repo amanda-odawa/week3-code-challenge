@@ -72,3 +72,6 @@ function buyTicket(movie) {
     }
 }
 
+//Initialize app
+loadFirstMovie();
+loadMoviesMenu();
