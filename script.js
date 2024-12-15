@@ -53,5 +53,8 @@ function displayMovieDetails(movie) {
     showtime.textContent = movie.showtime;
     tickets.textContent = movie.capacity - movie.tickets_sold;
 
-    
+    //Event to buy ticket
+    buyButton.onclick = () => {
+        buyTicket(movie);
+    };
 }
