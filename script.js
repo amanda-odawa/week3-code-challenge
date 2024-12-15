@@ -30,6 +30,19 @@ function loadMoviesMenu() {
 
                 //Add list item to films list
                 filmsList.appendChild(movieItem);
-            })
-        })
+            });
+        });
+}
+
+//Display a movie's details
+function displayMovieDetails(movie) {
+    //Get DOM elements for movie details
+    const title = document.getElementById('title');
+    const poster = document.getElementById('poster');
+    const description = document.getElementById('description');
+    const runtime = document.getElementById('runtime');
+    const showtime = document.getElementById('showtime');
+    const tickets = document.getElementById('tickets');
+    const buyButton = document.getElementById(buy-tickets);
+    
 }
