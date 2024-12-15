@@ -19,10 +19,18 @@ function loadMoviesMenu() {
             movies.forEach(movie => {
                 //Create list item
                 const movieItem = document.createElement('li');
+
                 //Set title as text
                 movieItem.textContent = movie.title;
+
                 //Add styling classes to movieItem
                 movieItem.classList.add('film', 'item');
+
+                //Check if the movie is sold out and add the "sold-out" class if necessary
+                if (movie.capacity - movie.tickets_sold === 0) {
+                    movieItem.classList.add('sold-out');
+                }
+
                 //Click event to display movie details
                 movieItem.addEventListener('click', () => {
                     displayMovieDetails(movie);
@@ -45,13 +53,25 @@ function displayMovieDetails(movie) {
     const tickets = document.getElementById('tickets');
     const buyButton = document.getElementById('buy-ticket');
 
+    //Calculate available tickets
+    const availableTickets = movie.capacity - movie.tickets_sold;
+
     //Update details with movie's info
     title.textContent = movie.title;
     poster.src = movie.poster;
     description.textContent = movie.description;
-    runtime.textContent = movie.runtime;
+    runtime.textContent = `${movie.runtime} minutes`;
     showtime.textContent = movie.showtime;
-    tickets.textContent = movie.capacity - movie.tickets_sold;
+    tickets.textContent = availableTickets;
+
+    //Update the button based on ticket availability
+    if (availableTickets > 0) {
+        buyButton.disabled = false;
+        buyButton.textContent = 'Buy Ticket';
+    } else {
+        buyButton.disabled = true;
+        buyButton.textContent = 'Sold Out';
+    }
 
     //Event to buy ticket
     buyButton.onclick = () => {
@@ -64,15 +84,33 @@ function buyTicket(movie) {
     const availableTickets = movie.capacity - movie.tickets_sold;
 
     if (availableTickets > 0) {
-        movie.tickets_sold++;
-        document.getElementById('tickets').textContent = movie.capacity - movie.tickets_sold;
+        movie.tickets_sold += 1; 
+        const remainingTickets = movie.capacity - movie.tickets_sold;
+
+        //Update ticket count in UI
+        document.getElementById('tickets').textContent = remainingTickets;
     
+        //Update the button if tickets are sold out
+        if (remainingTickets === 0) {
+            const buyButton = document.getElementById('buy-ticket');
+            buyButton.disabled = true;
+            buyButton.textContent = 'Sold Out';
+
+            //Update the movie item in the films list
+            const filmsListItems = document.querySelectorAll('#films li');
+            filmsListItems.forEach(item => {
+                if (item.textContent === movie.title) {
+                    item.classList.add('sold-out');
+                }
+            });
+        }    
     //Simulate persistence as irl solution (not required)
-    // fetch(`${baseURL}/${movie.id}`, {
-    //     method: 'PATCH',
-    //     headers: {'Content-Type': 'application/json'},
-    //     body: JSON.stringify({tickets_sold: movie.tickets_sold})
-    // });
+    fetch(`${baseURL}/${movie.id}`, {
+        method: 'PATCH',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({tickets_sold: movie.tickets_sold})
+    });
+
     }
 
     else {
