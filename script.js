@@ -44,5 +44,14 @@ function displayMovieDetails(movie) {
     const showtime = document.getElementById('showtime');
     const tickets = document.getElementById('tickets');
     const buyButton = document.getElementById(buy-tickets);
+
+    //Update details with movie's info
+    title.textContent = movie.title;
+    poster.src = movie.poster;
+    description.textContent = movie.description;
+    runtime.textContent = movie.runtime;
+    showtime.textContent = movie.showtime;
+    tickets.textContent = movie.capacity - movie.tickets_sold;
+
     
 }
