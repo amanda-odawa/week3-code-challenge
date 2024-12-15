@@ -58,3 +58,17 @@ function displayMovieDetails(movie) {
         buyTicket(movie);
     };
 }
+
+//Handle ticket purchase
+function buyTicket(movie) {
+    const availableTickets = movie.capacity - movie.tickets_sold;
+
+    if (availableTickets > 0) {
+        movie.tickets_sold +=1;
+        document.getElementById('tickets').textContent = movie.capacity - movie.tickets_sold;
+    }
+    else {
+        alert('Sorry, this movie is sold out!')
+    }
+}
+
