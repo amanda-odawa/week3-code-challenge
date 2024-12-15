@@ -85,16 +85,14 @@ function buyTicket(movie) {
 
     if (availableTickets > 0) {
         movie.tickets_sold += 1; 
-        const remainingTickets = movie.capacity - movie.tickets_sold;
 
         //Update ticket count in UI
-        document.getElementById('tickets').textContent = remainingTickets;
+        document.getElementById('tickets').textContent = movie.capacity - movie.tickets_sold;
     
         //Update the button if tickets are sold out
-        if (remainingTickets === 0) {
-            const buyButton = document.getElementById('buy-ticket');
-            buyButton.disabled = true;
-            buyButton.textContent = 'Sold Out';
+        if (movie.capacity - movie.tickets_sold === 0) {
+            document.getElementById('buy-ticket').disabled = true;
+            document.getElementById('buy-ticket').textContent = 'Sold Out';
 
             //Update the movie item in the films list
             const filmsListItems = document.querySelectorAll('#films li');
@@ -105,12 +103,11 @@ function buyTicket(movie) {
             });
         }    
     //Simulate persistence as irl solution (not required)
-    fetch(`${baseURL}/${movie.id}`, {
-        method: 'PATCH',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({tickets_sold: movie.tickets_sold})
-    });
-
+    // fetch(`${baseURL}/${movie.id}`, {
+    //     method: 'PATCH',
+    //     headers: {'Content-Type': 'application/json'},
+    //     body: JSON.stringify({tickets_sold: movie.tickets_sold})
+    // });
     }
 
     else {
