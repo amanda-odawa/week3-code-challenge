@@ -69,14 +69,21 @@ function displayMovieDetails(movie) {
         buyButton.disabled = false;
         buyButton.textContent = 'Buy Ticket';
     } else {
-        buyButton.disabled = true;
+        buyButton.disabled = false;
         buyButton.textContent = 'Sold Out';
     }
 
     //Event to buy ticket
     buyButton.onclick = () => {
-        buyTicket(movie);
-    };
+        if (availableTickets > 0) {
+            buyTicket(movie);
+        } 
+        else 
+        {
+            alert(`Sorry, "${movie.title}" is sold out!`);
+        }
+        
+    }
 }
 
 //Handle ticket purchase
@@ -110,9 +117,7 @@ function buyTicket(movie) {
     });
     }
 
-    else {
-        alert('Sorry, this movie is sold out!')
-    }
+    
 }
 
 //Initialize app
